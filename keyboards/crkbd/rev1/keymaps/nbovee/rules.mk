@@ -1,4 +1,4 @@
-DEFAULT_FOLDER = crkbd/rev1
+# DEFAULT_FOLDER = crkbd/rev1
 CONVERT_TO=elite_pi
 OLED_ENABLE = yes
 RGBLIGHT_ENABLE = no

@@ -69,7 +69,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   )
 };
 
-static void render_logo(void) {
+// static void render_logo(void) {
     // 'pepsidog.png
     // This is on an Elite-Pi, ARM, and so cannot use the wrapping of oled_write_ln_P naturally.
     // IMAGE BASED
@@ -95,18 +95,22 @@ static void render_logo(void) {
     // static const char PROGMEM pepsidog2[] = {0xA0, 0xA1, 0xA2, 0xA3, 0xA4, 0xA5};
     // static const char PROGMEM pepsidog3[] = {0xC0, 0xC1, 0xC2, 0xC3, 0xC4, 0xC5};
     // static const char PROGMEM pepsidog4[] = {0xC6, 0xC7, 0xC8, 0xC9, 0xCA, 0xCB};
-    static const char PROGMEM line0[] = {0x03};
-    static const char PROGMEM line1[] = {0x04};
-    // static const char PROGMEM line2[] = {0x05};
-    // static const char PROGMEM line3[] = {0x06};
-    oled_write("hello", false);
-    oled_advance_page(false);
-    oled_write_ln(line1, false);
-    oled_write(line0, false);
+static void render_logo(void) {
+    static const char PROGMEM pepsidog1[] = {0x80, 0x81, 0x82, 0x83, 0x84, 0x85, 0x00};
+    static const char PROGMEM pepsidog2[] = {0xA0, 0xA1, 0xA2, 0xA3, 0xA4, 0xA5, 0x00};
+    static const char PROGMEM pepsidog3[] = {0xC0, 0xC1, 0xC2, 0xC3, 0xC4, 0xC5, 0x00};
+    static const char PROGMEM pepsidog4[] = {0xC6, 0xC7, 0xC8, 0xC9, 0xCA, 0xCB, 0x00};
+
+    oled_write_ln_P(pepsidog1, false);
+    oled_write_ln_P(pepsidog2, false);
+    oled_write_ln_P(pepsidog3, false);
+    oled_write_ln_P(pepsidog4, false);
 }
 
 bool oled_task_user(void) {
-    oled_clear();
+    if(!is_keyboard_master()) {
+
+    }
     render_logo();
     return false;
 }
